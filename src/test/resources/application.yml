@@ -1,0 +1,45 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:h2:mem:paymenttest;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;INIT=CREATE SCHEMA IF NOT EXISTS manacommunity
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        default_schema: public
+  h2:
+    console:
+      enabled: false
+
+app:
+  jwt:
+    secret: test-secret-key-for-unit-tests-only-32-chars-min
+    expiration-ms: 900000
+    issuer: mana-community
+  security:
+    jwt:
+      secret: test-secret-key-for-unit-tests-only-32-chars-min
+      expiration-ms: 900000
+  cors:
+    allowed-origins:
+      - http://localhost:3000
+
+payment:
+  gateway:
+    default-provider: MOCK
+  razorpay:
+    key-id: rzp_test_mock
+    key-secret: rzp_secret_mock
+    webhook-secret: whsec_test_mock
+  stripe:
+    secret-key: sk_test_mock
+    webhook-secret: whsec_test_mock
+  upi:
+    vpa: test@okaxis
+    merchant-name: Mana Platform Test

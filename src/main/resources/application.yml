@@ -1,0 +1,45 @@
+server:
+  port: 8087
+  servlet:
+    context-path: /
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: mana-community-payment
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/manacommunity}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:9a4f8c2e1b6d3a7e5f8b0c4d2e9f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d3e5f}
+    expiration-ms: 86400000
+  security:
+    jwt:
+      secret: ${JWT_SECRET:9a4f8c2e1b6d3a7e5f8b0c4d2e9f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d3e5f}
+      expiration-ms: 86400000
+
+payment:
+  gateway:
+    default-provider: ${DEFAULT_GATEWAY_PROVIDER:MOCK}
+  razorpay:
+    key-id: ${RAZORPAY_KEY_ID:rzp_test_placeholder}
+    key-secret: ${RAZORPAY_KEY_SECRET:rzp_secret_placeholder}
+    webhook-secret: ${RAZORPAY_WEBHOOK_SECRET:rzp_webhook_secret_placeholder}
+  stripe:
+    secret-key: ${STRIPE_SECRET_KEY:sk_test_placeholder}
+    webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_placeholder}
+  upi:
+    vpa: ${UPI_MERCHANT_VPA:mana.platform@okaxis}
+    merchant-name: ${UPI_MERCHANT_NAME:Mana Platform Services}
